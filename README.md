@@ -8,8 +8,7 @@ Add Possi to your projects:
 
 ```
 repositories {
-			...
-			maven { url 'https://jitpack.io' }
+    maven { url 'https://jitpack.io' }
 }
 ```
 
@@ -17,6 +16,6 @@ Then:
 
 ```
 dependencies {
-        implementation 'com.github.Hippah:Possi:3.0.0'
+    implementation 'com.github.Hippah:Possi:3.0.0'
 }
 ```
