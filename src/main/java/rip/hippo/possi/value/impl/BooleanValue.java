@@ -26,7 +26,7 @@ public final class BooleanValue implements Value<Boolean> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
   /**
    * Mappings from common {@link String} values to their corresponding {@link Boolean} value.
    */

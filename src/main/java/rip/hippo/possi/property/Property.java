@@ -25,7 +25,7 @@ public abstract class Property<T> implements Serializable {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * The group the <tt>property</tt> is registered under.

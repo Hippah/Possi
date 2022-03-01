@@ -23,25 +23,20 @@ public final class SelectiveProperty<T> extends Property<T> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * The <tt>properties</tt> value.
    */
   private final SelectiveValue<T> value;
-  /**
-   * The <tt>properties</tt> default value.
-   */
-  private final SelectiveValue<T> defaultValue;
 
   /**
    * @param value The <tt>properties</tt> value.
    * @inheritDoc
    */
-  public SelectiveProperty(Group group, String name, String description, Property<?> parent, Map<String, Property<?>> children, SelectiveValue<T> value, SelectiveValue<T> defaultValue) {
+  public SelectiveProperty(Group group, String name, String description, Property<?> parent, Map<String, Property<?>> children, SelectiveValue<T> value) {
     super(group, name, description, parent, children);
     this.value = value;
-    this.defaultValue = defaultValue;
   }
 
   /**
@@ -54,6 +49,6 @@ public final class SelectiveProperty<T> extends Property<T> {
 
   @Override
   public SelectiveValue<T> getDefaultValue() {
-    return defaultValue;
+    return value;
   }
 }

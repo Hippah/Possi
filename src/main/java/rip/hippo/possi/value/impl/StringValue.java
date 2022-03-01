@@ -25,7 +25,7 @@ public final class StringValue extends FilterableValue<String> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
   /**
    * The value.
    */

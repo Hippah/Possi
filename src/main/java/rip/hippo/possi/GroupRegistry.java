@@ -23,7 +23,7 @@ public final class GroupRegistry implements Serializable {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * Maps a name to a {@link Group} object.

@@ -23,7 +23,7 @@ public final class NumberProperty extends Property<Number> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * The <tt>properties</tt> value.

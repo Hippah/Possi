@@ -24,7 +24,7 @@ public final class SelectiveValue<T> extends FilterableValue<T> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * A {@link List} of possible <tt>selections</tt>

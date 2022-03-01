@@ -25,7 +25,7 @@ public final class NumberValue extends FilterableValue<Number> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
   /**
    * The value,
    * increment (how much the value will be incremented or decremented by)

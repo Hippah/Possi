@@ -492,11 +492,7 @@ public final class PropertyBuilder {
     /**
      * The selective value.
      */
-    private SelectiveValue<T> value;
-    /**
-     * The selective default value.
-     */
-    private SelectiveValue<T> defaultValue;
+    private final SelectiveValue<T> value;
 
     /**
      * Constructs a <tt>Selective Property Builder</tt> with <tt>delegate</tt>.
@@ -506,30 +502,7 @@ public final class PropertyBuilder {
     private SelectivePropertyBuilder(PropertyBuilder delegate) {
       this.delegate = delegate;
       this.value = new SelectiveValue<>();
-      this.defaultValue = new SelectiveValue<>();
       this.selections = new ArrayList<>();
-    }
-
-    /**
-     * Sets the selective value.
-     *
-     * @param value The value.
-     * @return {@code this}.
-     */
-    public SelectivePropertyBuilder<T> setValue(SelectiveValue<T> value) {
-      this.value = value;
-      return this;
-    }
-
-    /**
-     * Sets the selective default value.
-     *
-     * @param value The value.
-     * @return {@code this}.
-     */
-    public SelectivePropertyBuilder<T> setDefaultValue(SelectiveValue<T> value) {
-      this.defaultValue = value;
-      return this;
     }
 
     /**
@@ -560,7 +533,7 @@ public final class PropertyBuilder {
      * @return The property.
      */
     public SelectiveProperty<T> build() {
-      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
+      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value);
       delegate.group.getProperties().put(selectiveProperty.getName(), selectiveProperty);
       for (T selection : selections) {
         value.add(selection);
@@ -575,7 +548,7 @@ public final class PropertyBuilder {
      * @return The properties group.
      */
     public Group deploy() {
-      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
+      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value);
       delegate.group.getProperties().put(selectiveProperty.getName(), selectiveProperty);
       for (T selection : selections) {
         value.add(selection);

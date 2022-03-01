@@ -24,7 +24,7 @@ public abstract class FilterableValue<T> implements Value<T> {
    * @see Serializable
    */
   @Serial
-  private static final long serialVersionUID = 2L;
+  private static final long serialVersionUID = 3L;
 
   /**
    * A {@link List} off all the <tt>filters</tt>.
