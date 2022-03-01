@@ -6,18 +6,16 @@ Possi is a super efficent, light weight, and flexible property system for your j
 
 Add Possi to your projects:
 
-```
+```kotlin
 repositories {
-    maven {
-      url 'https://jitpack.io'
-    }
+    maven("https://jitpack.io")
 }
 ```
 
 Then:
 
-```
+```kotlin
 dependencies {
-    implementation group: 'com.github.Hippo', name: 'Possi', version: '3.2.0'
+    implementation("rip.hippo:Possi:3.2.0")
 }
 ```
