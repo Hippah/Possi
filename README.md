@@ -1,8 +1,8 @@
 # Possi
+
 A Light Weight Java Property System
 
 Possi is a super efficent, light weight, and flexible property system for your java applications.
-
 
 Add Possi to your projects:
 
@@ -18,6 +18,6 @@ Then:
 
 ```
 dependencies {
-    implementation group: 'com.github.Hippo', name: 'Possi', version: '3.0.0'
+    implementation group: 'com.github.Hippo', name: 'Possi', version: '3.1.0'
 }
 ```

@@ -1,7 +1,14 @@
-.git
-.idea
-build
-gradle
-.gradle
+# Gradle
+.gradle/
+build/
+
+# IDEA
+!.idea/
+.idea/*
+!.idea/codeStyles/
+
+#OSX
 .DS_Store
-out
+
+# Git
+.git/
