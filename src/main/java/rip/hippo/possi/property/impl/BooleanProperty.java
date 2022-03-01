@@ -15,7 +15,7 @@ import java.util.Map;
  * <p>
  * A {@link Property} based around {@link Boolean}s.
  */
-public final class BooleanProperty extends Property {
+public final class BooleanProperty extends Property<Boolean> {
 
   /**
    * The serial id.
@@ -29,14 +29,20 @@ public final class BooleanProperty extends Property {
    * The <tt>properties</tt> value.
    */
   private final BooleanValue value;
+  /**
+   * The <tt>properties</tt> default value.
+   */
+  private final BooleanValue defaultValue;
+
 
   /**
    * @param value The <tt>properties</tt> value.
    * @inheritDoc
    */
-  public BooleanProperty(Group group, String name, Property parent, Map<String, Property> children, BooleanValue value) {
-    super(group, name, parent, children);
+  public BooleanProperty(Group group, String name, String description, Property<?> parent, Map<String, Property<?>> children, BooleanValue value, BooleanValue defaultValue) {
+    super(group, name, description, parent, children);
     this.value = value;
+    this.defaultValue = defaultValue;
   }
 
   /**
@@ -45,5 +51,10 @@ public final class BooleanProperty extends Property {
   @Override
   public BooleanValue getValue() {
     return value;
+  }
+
+  @Override
+  public BooleanValue getDefaultValue() {
+    return defaultValue;
   }
 }

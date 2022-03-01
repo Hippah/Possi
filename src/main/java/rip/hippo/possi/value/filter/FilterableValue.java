@@ -2,6 +2,7 @@ package rip.hippo.possi.value.filter;
 
 import rip.hippo.possi.value.Value;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,8 @@ public abstract class FilterableValue<T> implements Value<T> {
    *
    * @see Serializable
    */
-  private static final long serialVersionUID = 1L;
+  @Serial
+  private static final long serialVersionUID = 2L;
 
   /**
    * A {@link List} off all the <tt>filters</tt>.

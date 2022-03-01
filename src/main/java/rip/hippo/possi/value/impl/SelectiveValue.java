@@ -66,7 +66,7 @@ public final class SelectiveValue<T> extends FilterableValue<T> {
   public PropertyValueCallback<T> update(T value) {
     int index = selections.indexOf(value);
     T previous = get();
-    boolean success = !passesFilters(value) || index == -1;
+    boolean success = passesFilters(value) && index == -1;
     if (success) {
       selected = index;
     }

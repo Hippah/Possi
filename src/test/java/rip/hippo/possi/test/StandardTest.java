@@ -27,9 +27,9 @@ public final class StandardTest {
 
     group.buildProperty().setName("Boolean With Child").addChild(group.getProperty("MyBoolean")).asBoolean().deploy();
 
-    for (Map.Entry<String, Property> properties : group.getProperties().entrySet()) {
+    for (Map.Entry<String, Property<?>> properties : group.getProperties().entrySet()) {
       String name = properties.getKey();
-      Property property = properties.getValue();
+      Property<?> property = properties.getValue();
       System.out.println(name + " " + property.getValue() + " " + property.getChildren() + " " + property.getParent());
     }
 

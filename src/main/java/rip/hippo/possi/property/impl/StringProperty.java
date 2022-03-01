@@ -2,6 +2,7 @@ package rip.hippo.possi.property.impl;
 
 import rip.hippo.possi.group.Group;
 import rip.hippo.possi.property.Property;
+import rip.hippo.possi.value.Value;
 import rip.hippo.possi.value.impl.StringValue;
 
 import java.io.Serial;
@@ -15,7 +16,7 @@ import java.util.Map;
  * <p>
  * A {@link Property} based around {@link String}s.
  */
-public final class StringProperty extends Property {
+public final class StringProperty extends Property<String> {
 
   /**
    * The serial id.
@@ -29,14 +30,19 @@ public final class StringProperty extends Property {
    * The <tt>properties</tt> value.
    */
   private final StringValue value;
+  /**
+   * The <tt>properties</tt> default value.
+   */
+  private final StringValue defaultValue;
 
   /**
    * @param value The <tt>properties</tt> value.
    * @inheritDoc
    */
-  public StringProperty(Group group, String name, Property parent, Map<String, Property> children, StringValue value) {
-    super(group, name, parent, children);
+  public StringProperty(Group group, String name, String description, Property<?> parent, Map<String, Property<?>> children, StringValue value, StringValue defaultValue) {
+    super(group, name, description, parent, children);
     this.value = value;
+    this.defaultValue = defaultValue;
   }
 
   /**
@@ -45,5 +51,10 @@ public final class StringProperty extends Property {
   @Override
   public StringValue getValue() {
     return value;
+  }
+
+  @Override
+  public StringValue getDefaultValue() {
+    return defaultValue;
   }
 }

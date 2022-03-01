@@ -18,6 +18,6 @@ Then:
 
 ```
 dependencies {
-    implementation group: 'com.github.Hippo', name: 'Possi', version: '3.1.0'
+    implementation group: 'com.github.Hippo', name: 'Possi', version: '3.2.0'
 }
 ```

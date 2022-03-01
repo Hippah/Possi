@@ -35,15 +35,19 @@ public final class PropertyBuilder {
   /**
    * The properties children.
    */
-  private final Map<String, Property> children;
+  private final Map<String, Property<?>> children;
   /**
    * The name of the property.
    */
   private String name;
   /**
+   * The description of the property.
+   */
+  private String description;
+  /**
    * The properties parent.
    */
-  private Property parent;
+  private Property<?> parent;
 
 
   /**
@@ -68,12 +72,25 @@ public final class PropertyBuilder {
   }
 
   /**
+   * Sets the description of the property.
+   *
+   * @param description The name.
+   * @return {@code this}.
+   */
+  public PropertyBuilder setDescription(String description) {
+    this.description = description;
+    return this;
+  }
+  
+  
+
+  /**
    * Sets the parent of the property.
    *
    * @param parent The parent.
    * @return {@code this}.
    */
-  public PropertyBuilder setParent(Property parent) {
+  public PropertyBuilder setParent(Property<?> parent) {
     this.parent = parent;
     return this;
   }
@@ -84,7 +101,7 @@ public final class PropertyBuilder {
    * @param child The child.
    * @return {@code this}.
    */
-  public PropertyBuilder addChild(Property child) {
+  public PropertyBuilder addChild(Property<?> child) {
     children.put(child.getName(), child);
     return this;
   }
@@ -132,8 +149,8 @@ public final class PropertyBuilder {
    *
    * @param property The property that was built or deployed.
    */
-  private void buildCallBack(Property property) {
-    for (Property child : children.values()) {
+  private void buildCallBack(Property<?> property) {
+    for (Property<?> child : children.values()) {
       child.setParent(property);
     }
   }
@@ -152,6 +169,10 @@ public final class PropertyBuilder {
      * The boolean value.
      */
     private BooleanValue value;
+    /**
+     * The boolean value.
+     */
+    private BooleanValue defaultValue;
 
     /**
      * Constructs a <tt>Boolean Property Builder</tt> with <tt>delegate</tt>.
@@ -161,6 +182,7 @@ public final class PropertyBuilder {
     private BooleanPropertyBuilder(PropertyBuilder delegate) {
       this.delegate = delegate;
       this.value = BooleanValue.DEFAULT_VALUE;
+      this.defaultValue = BooleanValue.DEFAULT_VALUE;
     }
 
     /**
@@ -184,12 +206,32 @@ public final class PropertyBuilder {
     }
 
     /**
+     * Sets the booleans default value to {@code true}.
+     *
+     * @return {@code this}.
+     */
+    public BooleanPropertyBuilder setDefaultTrue() {
+      this.defaultValue = BooleanValue.of(true);
+      return this;
+    }
+
+    /**
+     * Sets the booleans default value to {@code false}.
+     *
+     * @return {@code this}.
+     */
+    public BooleanPropertyBuilder setDefaultFalse() {
+      this.defaultValue = BooleanValue.of(false);
+      return this;
+    }
+
+    /**
      * Builds the property.
      *
      * @return The property.
      */
     public BooleanProperty build() {
-      BooleanProperty booleanProperty = new BooleanProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      BooleanProperty booleanProperty = new BooleanProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(booleanProperty.getName(), booleanProperty);
       delegate.buildCallBack(booleanProperty);
       return booleanProperty;
@@ -201,7 +243,7 @@ public final class PropertyBuilder {
      * @return The properties group.
      */
     public Group deploy() {
-      BooleanProperty booleanProperty = new BooleanProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      BooleanProperty booleanProperty = new BooleanProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(booleanProperty.getName(), booleanProperty);
       delegate.buildCallBack(booleanProperty);
       return booleanProperty.getGroup();
@@ -225,6 +267,11 @@ public final class PropertyBuilder {
     private StringValue value;
 
     /**
+     * The string default value.
+     */
+    private StringValue defaultValue;
+
+    /**
      * Constructs a <tt>String Property Builder</tt> with <tt>delegate</tt>.
      *
      * @param delegate The delegate.
@@ -232,6 +279,7 @@ public final class PropertyBuilder {
     private StringPropertyBuilder(PropertyBuilder delegate) {
       this.delegate = delegate;
       this.value = StringValue.DEFAULT_VALUE;
+      this.defaultValue = StringValue.DEFAULT_VALUE;
     }
 
     /**
@@ -242,6 +290,17 @@ public final class PropertyBuilder {
      */
     public StringPropertyBuilder setValue(StringValue value) {
       this.value = value;
+      return this;
+    }
+
+    /**
+     * Sets the strings default value.
+     *
+     * @param value The value.
+     * @return {@code this}.
+     */
+    public StringPropertyBuilder setDefaultValue(StringValue value) {
+      this.defaultValue = value;
       return this;
     }
 
@@ -262,7 +321,7 @@ public final class PropertyBuilder {
      * @return The property.
      */
     public StringProperty build() {
-      StringProperty stringProperty = new StringProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      StringProperty stringProperty = new StringProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(stringProperty.getName(), stringProperty);
       delegate.buildCallBack(stringProperty);
       return stringProperty;
@@ -274,7 +333,7 @@ public final class PropertyBuilder {
      * @return The properties group.
      */
     public Group deploy() {
-      StringProperty stringProperty = new StringProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      StringProperty stringProperty = new StringProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(stringProperty.getName(), stringProperty);
       delegate.buildCallBack(stringProperty);
       return stringProperty.getGroup();
@@ -298,6 +357,11 @@ public final class PropertyBuilder {
     private NumberValue value;
 
     /**
+     * The number default value.
+     */
+    private NumberValue defaultValue;
+
+    /**
      * The increment, minimum, and maximum.
      */
     private Number increment, minimum, maximum;
@@ -310,6 +374,7 @@ public final class PropertyBuilder {
     private NumberPropertyBuilder(PropertyBuilder delegate) {
       this.delegate = delegate;
       this.value = NumberValue.DEFAULT_VALUE;
+      this.defaultValue = NumberValue.DEFAULT_VALUE;
     }
 
     /**
@@ -320,6 +385,17 @@ public final class PropertyBuilder {
      */
     public NumberPropertyBuilder setValue(NumberValue value) {
       this.value = value;
+      return this;
+    }
+
+    /**
+     * Sets the number default value.
+     *
+     * @param value The value.
+     * @return {@code this}.
+     */
+    public NumberPropertyBuilder setDefaultValue(NumberValue value) {
+      this.defaultValue = value;
       return this;
     }
 
@@ -373,7 +449,7 @@ public final class PropertyBuilder {
      * @return The property.
      */
     public NumberProperty build() {
-      NumberProperty numberProperty = new NumberProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      NumberProperty numberProperty = new NumberProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       numberProperty.getValue().setIncrement(increment);
       numberProperty.getValue().setMinimum(minimum);
       numberProperty.getValue().setMaximum(maximum);
@@ -388,7 +464,7 @@ public final class PropertyBuilder {
      * @return The properties group.
      */
     public Group deploy() {
-      NumberProperty numberProperty = new NumberProperty(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      NumberProperty numberProperty = new NumberProperty(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       numberProperty.getValue().setIncrement(increment);
       numberProperty.getValue().setMinimum(minimum);
       numberProperty.getValue().setMaximum(maximum);
@@ -417,6 +493,10 @@ public final class PropertyBuilder {
      * The selective value.
      */
     private SelectiveValue<T> value;
+    /**
+     * The selective default value.
+     */
+    private SelectiveValue<T> defaultValue;
 
     /**
      * Constructs a <tt>Selective Property Builder</tt> with <tt>delegate</tt>.
@@ -426,6 +506,7 @@ public final class PropertyBuilder {
     private SelectivePropertyBuilder(PropertyBuilder delegate) {
       this.delegate = delegate;
       this.value = new SelectiveValue<>();
+      this.defaultValue = new SelectiveValue<>();
       this.selections = new ArrayList<>();
     }
 
@@ -437,6 +518,17 @@ public final class PropertyBuilder {
      */
     public SelectivePropertyBuilder<T> setValue(SelectiveValue<T> value) {
       this.value = value;
+      return this;
+    }
+
+    /**
+     * Sets the selective default value.
+     *
+     * @param value The value.
+     * @return {@code this}.
+     */
+    public SelectivePropertyBuilder<T> setDefaultValue(SelectiveValue<T> value) {
+      this.defaultValue = value;
       return this;
     }
 
@@ -468,7 +560,7 @@ public final class PropertyBuilder {
      * @return The property.
      */
     public SelectiveProperty<T> build() {
-      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(selectiveProperty.getName(), selectiveProperty);
       for (T selection : selections) {
         value.add(selection);
@@ -483,7 +575,7 @@ public final class PropertyBuilder {
      * @return The properties group.
      */
     public Group deploy() {
-      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.parent, delegate.children, value);
+      SelectiveProperty<T> selectiveProperty = new SelectiveProperty<>(delegate.group, delegate.name, delegate.description, delegate.parent, delegate.children, value, defaultValue);
       delegate.group.getProperties().put(selectiveProperty.getName(), selectiveProperty);
       for (T selection : selections) {
         value.add(selection);

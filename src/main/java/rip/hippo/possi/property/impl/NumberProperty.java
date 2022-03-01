@@ -15,7 +15,7 @@ import java.util.Map;
  * <p>
  * A {@link Property} based around {@link Number}s.
  */
-public final class NumberProperty extends Property {
+public final class NumberProperty extends Property<Number> {
 
   /**
    * The serial id.
@@ -29,14 +29,19 @@ public final class NumberProperty extends Property {
    * The <tt>properties</tt> value.
    */
   public final NumberValue value;
+  /**
+   * The <tt>properties</tt> default value.
+   */
+  public final NumberValue defaultValue;
 
   /**
    * @param value The <tt>properties</tt> value.
    * @inheritDoc
    */
-  public NumberProperty(Group group, String name, Property parent, Map<String, Property> children, NumberValue value) {
-    super(group, name, parent, children);
+  public NumberProperty(Group group, String name, String description, Property<?> parent, Map<String, Property<?>> children, NumberValue value, NumberValue defaultValue) {
+    super(group, name, description, parent, children);
     this.value = value;
+    this.defaultValue = defaultValue;
   }
 
   /**
@@ -45,5 +50,10 @@ public final class NumberProperty extends Property {
   @Override
   public NumberValue getValue() {
     return value;
+  }
+
+  @Override
+  public NumberValue getDefaultValue() {
+    return defaultValue;
   }
 }

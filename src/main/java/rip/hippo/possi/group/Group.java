@@ -28,7 +28,7 @@ public final class Group {
   /**
    * All the {@link Property}s mapped to their name.
    */
-  private final Map<String, Property> properties;
+  private final Map<String, Property<?>> properties;
 
   /**
    * All the child {@link Group}s mapped to their name.
@@ -111,7 +111,7 @@ public final class Group {
    *
    * @return The properties.
    */
-  public Map<String, Property> getProperties() {
+  public Map<String, Property<?>> getProperties() {
     return properties;
   }
 
