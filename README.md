@@ -16,6 +16,6 @@ Then:
 
 ```kotlin
 dependencies {
-    implementation("rip.hippo:Possi:3.2.1")
+    implementation("rip.hippo:Possi:3.2.2")
 }
 ```

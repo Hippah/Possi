@@ -63,7 +63,7 @@ public final class Group {
    * @param name The name to look up by.
    * @return The property.
    */
-  public Property getProperty(String name) {
+  public Property<?> getProperty(String name) {
     return properties.get(name);
   }
 
@@ -104,6 +104,15 @@ public final class Group {
    */
   public String getName() {
     return name;
+  }
+
+  /**
+   * Gets the groups parent.
+   *
+   * @return The parent.
+   */
+  public Group getParent() {
+    return parent;
   }
 
   /**
