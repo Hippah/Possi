@@ -16,6 +16,8 @@ dependencies {
     
     // Spigot module
     implementation("rip.hippo.possi:spigot:4.0.1")
+    // Gson module
+    implementation("rip.hippo.possi:gson:4.0.1")
 }
 ```
 
