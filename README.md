@@ -42,6 +42,8 @@ Whenever `PropertySource#load` is invoked, the bind will read the source and set
 Whenever `PropertySource#save` is invoked, the bind will write the property's value to the source.
 
 <small>The standard implementation handles adding properties to binds automatically</small>
+
+A usage example of binds and sources can be found [here](core/src/test/java/rip/hippo/possi/testing/PropertySourceTest.java)
 ### Key
 A [PropertyKey](core/src/main/java/rip/hippo/possi/key/PropertyKey.java)
 is an object that is used to locate a property
