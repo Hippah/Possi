@@ -1,0 +1,9 @@
+name: PossiExample
+main: rip.hippo.possi.spigot.example.PossiExamplePlugin
+version: 1.0.0
+author: Hippo
+api-version: 1.19
+
+commands:
+  possi:
+    description: "Sends the greeting message."
