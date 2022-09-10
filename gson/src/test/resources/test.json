@@ -1,0 +1,13 @@
+{
+  "firstProperty": {
+    "value": "firstValue"
+  },
+  "spacer": {
+    "secondProperty": {
+      "value": [
+        "element_1",
+        "element_2"
+      ]
+    }
+  }
+}

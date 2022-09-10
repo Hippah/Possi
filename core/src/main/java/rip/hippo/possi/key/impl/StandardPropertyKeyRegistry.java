@@ -1,6 +1,7 @@
 package rip.hippo.possi.key.impl;
 
 import rip.hippo.possi.Property;
+import rip.hippo.possi.attribute.impl.VisibilityAttribute;
 import rip.hippo.possi.key.PropertyKey;
 import rip.hippo.possi.key.PropertyKeyRegistry;
 
@@ -30,8 +31,15 @@ public final class StandardPropertyKeyRegistry implements PropertyKeyRegistry {
         continue;
       }
       List<Property<?>> propertyList = keyMap.get(key.getKeyValue());
-      if (propertyList != null) {
-        properties.addAll(propertyList);
+      if (propertyList == null) {
+        continue;
+      }
+
+      for (Property<?> property : propertyList) {
+        if (property.getAttribute(VisibilityAttribute.class, VisibilityAttribute.STOP_NONE).isStopLookup()) {
+          continue;
+        }
+        properties.add(property);
       }
     }
 

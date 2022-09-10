@@ -12,10 +12,10 @@ Then:
 
 ```kotlin
 dependencies {
-    implementation("rip.hippo.possi:core:4.0.0")
+    implementation("rip.hippo.possi:core:4.0.1")
     
     // Spigot module
-    implementation("rip.hippo.possi:spigot:4.0.0")
+    implementation("rip.hippo.possi:spigot:4.0.1")
 }
 ```
 
@@ -75,3 +75,8 @@ Spigot (YAML Configuration)
 
 - [Implementation](spigot/src/main/java/rip/hippo/possi/spigot/source)
 - [Example](spigot-example/src/main/java/rip/hippo/possi/spigot/example/PossiExamplePlugin.java)
+
+Gson
+
+- [Implementation](gson/src/main/java/rip/hippo/possi/gson/source)
+- [Example](gson/src/test/java/rip/hippo/possi/gson/testing/GsonTest.java)

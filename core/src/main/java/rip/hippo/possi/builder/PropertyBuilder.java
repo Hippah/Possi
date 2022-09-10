@@ -72,6 +72,11 @@ public final class PropertyBuilder<T> implements Property<T> {
   }
 
   @Override
+  public <U extends PropertyAttribute> U getAttribute(Class<U> attributeClass, U defaultValue) {
+    return getAttribute(attributeClass).orElse(defaultValue);
+  }
+
+  @Override
   public List<PropertyAttribute> getAttributes() {
     return new ArrayList<>(attributeMap.values());
   }

@@ -5,14 +5,14 @@ plugins {
 }
 
 group = "rip.hippo.possi"
-version = "4.0.0"
+version = "4.0.1"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
