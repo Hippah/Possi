@@ -54,6 +54,7 @@ A usage example of keys can be found [here](core/src/test/java/rip/hippo/possi/t
 ### Attribute
 A [PropertyAttribute](core/src/main/java/rip/hippo/possi/attribute/PropertyAttribute.java)
 is additional runtime information attached to the property.
+This may contain information such as number ranges, default values, and much more.
 
 A usage example of attributes can be found [here](core/src/test/java/rip/hippo/possi/testing/PropertyAttributeTest.java).
 
@@ -63,3 +64,14 @@ is a callback that is invoked when the value of a property changes.
 These may modify the value of the property or cancel the change entirely.
 
 A usage example of callbacks can be found [here](core/src/test/java/rip/hippo/possi/testing/PropertyCallbackTest.java).
+
+# Modules
+
+A purpose of a module is to mainly provide implementations for Sources and Binds.
+
+You may have to write your own module depending on your project, on this repo we provide modules for the following:
+
+Spigot (YAML Configuration)
+
+- [Implementation](spigot/src/main/java/rip/hippo/possi/spigot/source)
+- [Example](spigot-example/src/main/java/rip/hippo/possi/spigot/example/PossiExamplePlugin.java)
