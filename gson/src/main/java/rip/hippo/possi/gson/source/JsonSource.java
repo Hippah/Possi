@@ -37,6 +37,29 @@ public final class JsonSource {
     return jsonElement.getAsJsonObject();
   }
 
+  public JsonObject create(String path) {
+    String[] split = path.split("\\.");
+    String name = split[split.length - 1];
+    JsonObject current = jsonObject;
+    if (split.length != 1) {
+      for (int i = 0; i < split.length - 1; i++) {
+        String part = split[i];
+        JsonElement jsonElement = current.get(part);
+        if (jsonElement == null || !jsonElement.isJsonObject()) {
+          JsonObject object = new JsonObject();
+          current.add(part, object);
+          current = object;
+        } else {
+          current = jsonElement.getAsJsonObject();
+        }
+      }
+    }
+    JsonObject object = new JsonObject();
+    current.add(name, object);
+    return object;
+  }
+
+
   public JsonObject getJsonObject() {
     return jsonObject;
   }

@@ -42,7 +42,7 @@ public final class GsonPropertyBind<T> extends AbstractPropertyBind<GsonProperty
     JsonObject jsonObject = getSource().getJsonSource().getPropertyObject(path);
     Gson gson = getSource().getGson();
     if (jsonObject == null) {
-      return;
+      jsonObject = getSource().getJsonSource().create(path);
     }
     TypeAdapter<T> adapter = gson.getAdapter(type);
     JsonElement jsonElement = adapter.toJsonTree(getProperty().get());
