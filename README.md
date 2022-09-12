@@ -12,12 +12,12 @@ Then:
 
 ```kotlin
 dependencies {
-    implementation("rip.hippo.possi:core:4.0.2")
+    implementation("rip.hippo.possi:core:4.0.3")
     
     // Spigot module
-    implementation("rip.hippo.possi:spigot:4.0.2")
+    implementation("rip.hippo.possi:spigot:4.0.3")
     // Gson module
-    implementation("rip.hippo.possi:gson:4.0.2")
+    implementation("rip.hippo.possi:gson:4.0.3")
 }
 ```
 

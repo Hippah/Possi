@@ -12,13 +12,11 @@ import java.util.*;
  */
 public final class StandardPropertyKeyRegistry implements PropertyKeyRegistry {
 
-  private final Map<Class<?>, Map<Object, List<Property<?>>>> propertyKeyMap = new HashMap<>();
+  private final Map<PropertyKey<?>, List<Property<?>>> propertyKeyMap = new HashMap<>();
 
   @Override
   public void register(PropertyKey<?> propertyKey, Property<?> property) {
-    propertyKeyMap.computeIfAbsent(propertyKey.getClass(), ignored -> new HashMap<>())
-        .computeIfAbsent(propertyKey.getKeyValue(), ignored -> new LinkedList<>())
-        .add(property);
+    propertyKeyMap.computeIfAbsent(propertyKey, ignored -> new LinkedList<>()).add(property);
   }
 
   @Override
@@ -26,15 +24,10 @@ public final class StandardPropertyKeyRegistry implements PropertyKeyRegistry {
     List<Property<?>> properties = new LinkedList<>();
 
     for (PropertyKey<?> key : keys) {
-      Map<Object, List<Property<?>>> keyMap = propertyKeyMap.get(key.getClass());
-      if (keyMap == null) {
-        continue;
-      }
-      List<Property<?>> propertyList = keyMap.get(key.getKeyValue());
+      List<Property<?>> propertyList = propertyKeyMap.get(key);
       if (propertyList == null) {
         continue;
       }
-
       for (Property<?> property : propertyList) {
         if (property.getAttribute(VisibilityAttribute.class, VisibilityAttribute.STOP_NONE).isStopLookup()) {
           continue;
