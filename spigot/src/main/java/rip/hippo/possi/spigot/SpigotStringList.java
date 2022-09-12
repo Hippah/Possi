@@ -2,6 +2,7 @@ package rip.hippo.possi.spigot;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,11 @@ public final class SpigotStringList extends ArrayList<SpigotString> {
   }
 
   public SpigotStringList papi(OfflinePlayer player) {
+    replaceAll(string -> string.papi(player));
+    return this;
+  }
+
+  public SpigotStringList papi(Player player) {
     replaceAll(string -> string.papi(player));
     return this;
   }

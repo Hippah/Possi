@@ -1,4 +1,4 @@
-package rip.hippo.possi.builder;
+package rip.hippo.possi.internal;
 
 import rip.hippo.possi.Property;
 import rip.hippo.possi.attribute.PropertyAttribute;
@@ -13,38 +13,42 @@ import java.util.*;
 /**
  * @author Hippo
  */
-public final class PropertyBuilder<T> implements Property<T> {
+public final class StandardProperty<T> implements Property<T> {
 
   private T value;
   private final List<ValueChangeCallback<T>> callbacks;
   private final Map<Class<?>, PropertyKey<?>> keyMap;
   private final Map<Class<?>, PropertyAttribute> attributeMap;
 
-  public PropertyBuilder(T value) {
+  public StandardProperty(T value) {
     this.value = value;
     this.callbacks = new LinkedList<>();
     this.keyMap = new HashMap<>();
     this.attributeMap = new HashMap<>();
   }
 
-  public PropertyBuilder<T> withCallback(ValueChangeCallback<T> callback) {
+  @Override
+  public Property<T> withCallback(ValueChangeCallback<T> callback) {
     callbacks.add(callback);
     return this;
   }
 
-  public PropertyBuilder<T> withKey(PropertyKeyRegistry keyRegistry, PropertyKey<?> key) {
+  @Override
+  public Property<T> withKey(PropertyKeyRegistry keyRegistry, PropertyKey<?> key) {
     keyRegistry.register(key, this);
     keyMap.put(key.getClass(), key);
     return this;
   }
 
-  public PropertyBuilder<T> withAttribute(PropertyAttribute attribute) {
+  @Override
+  public Property<T> withAttribute(PropertyAttribute attribute) {
     attributeMap.put(attribute.getClass(), attribute);
     attribute.setProperty(this);
     return this;
   }
 
-  public PropertyBuilder<T> withBind(PropertyBind<?, T> bind) {
+  @Override
+  public Property<T> withBind(PropertyBind<?, T> bind) {
     bind.setProperty(this);
     return this;
   }

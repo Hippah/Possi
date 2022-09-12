@@ -26,6 +26,11 @@ public final class SpigotString {
     return this;
   }
 
+  public SpigotString papi(Player player) {
+    value = PlaceholderAPI.setPlaceholders(player, value);
+    return this;
+  }
+
   public SpigotString replace(String key, String value) {
     this.value = this.value.replace(key, value);
     return this;

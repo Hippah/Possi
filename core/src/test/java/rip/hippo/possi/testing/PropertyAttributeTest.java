@@ -13,10 +13,9 @@ public final class PropertyAttributeTest {
 
   @Test
   public void test() {
-    Property<String> property = Property.of(String.class)
-        .with("My Value")
+    Property<String> property = Property.of("My Value")
         .withAttribute(new DefaultValueAttribute<>("Default Value"))
-        .withAttribute(new SubPropertiesAttribute(Property.of(Boolean.class).with(true)));
+        .withAttribute(new SubPropertiesAttribute(Property.of(true)));
     System.out.println("Initial value: " + property.get());
     property.getAttribute(DefaultValueAttribute.class)
         .ifPresent(DefaultValueAttribute::setDefaultValue);

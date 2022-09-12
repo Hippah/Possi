@@ -17,8 +17,7 @@ public final class PossiExamplePlugin extends JavaPlugin {
 
   private final YAMLPropertySource propertySource = new YAMLPropertySource(this);
 
-  private final Property<SpigotString> greetingProperty = Property.of(SpigotString.class)
-      .with(SpigotString.of("&cHello world!").color())
+  private final Property<SpigotString> greetingProperty = Property.of(SpigotString.of("&cHello world!").color())
       .withBind(propertySource.bindSpigotString("messages.greeting"));
 
   @Override

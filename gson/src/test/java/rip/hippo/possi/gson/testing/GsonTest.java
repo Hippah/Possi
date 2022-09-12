@@ -8,7 +8,6 @@ import rip.hippo.possi.reflector.Reflector;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,11 +22,10 @@ public final class GsonTest {
       JsonSource jsonSource = JsonSource.of(stream);
       GsonPropertySource propertySource = new GsonPropertySource(jsonSource);
 
-      Property<String> firstProperty = Property.of(String.class)
-              .with("my value")
+      Property<String> firstProperty = Property.of("my value")
               .withBind(propertySource.getGsonBind(String.class, "firstProperty"));
 
-      Property<List<String>> secondProperty = Property.as(Arrays.asList("cool", "values"))
+      Property<List<String>> secondProperty = Property.of(Arrays.asList("cool", "values"))
               .withBind(propertySource.getGsonBind(Reflector.getListClass(String.class), "spacer.secondProperty"));
 
       System.out.println("First property: " + firstProperty.get());

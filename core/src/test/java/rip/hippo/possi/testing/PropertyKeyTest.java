@@ -15,13 +15,11 @@ public final class PropertyKeyTest {
   public void test() {
     PropertyKeyRegistry propertyKeyRegistry = PropertyKeyRegistry.create();
 
-    Property.of(String.class)
-        .with("Default Property Value")
+    Property.of("Default Property Value")
         .withKey(propertyKeyRegistry, new NameKey("String Name"))
         .withKey(propertyKeyRegistry, new OwnerKey(this));
 
-    Property.of(Boolean.class)
-        .with(true)
+    Property.of(true)
         .withKey(propertyKeyRegistry, new NameKey("Boolean Name"))
         .withKey(propertyKeyRegistry, new OwnerKey(this));
 

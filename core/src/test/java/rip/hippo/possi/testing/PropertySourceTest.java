@@ -20,11 +20,9 @@ public final class PropertySourceTest {
 
     TestPropertySource source = new TestPropertySource(properties);
 
-    Property<String> stringProperty = Property.of(String.class)
-        .with("Default Property Value")
+    Property<String> stringProperty = Property.of("Default Property Value")
         .withBind(source.bindString("string"));
-    Property<Integer> intProperty = Property.of(Integer.class)
-        .with(100)
+    Property<Integer> intProperty = Property.of(100)
         .withBind(source.bindInt("int"));
 
 
