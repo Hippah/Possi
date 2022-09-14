@@ -1,2 +1,9 @@
 messages:
   greeting: "&aHello, %name%!"
+
+number-list:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5

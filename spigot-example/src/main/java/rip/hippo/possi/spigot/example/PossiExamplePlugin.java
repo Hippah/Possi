@@ -8,6 +8,8 @@ import rip.hippo.possi.Property;
 import rip.hippo.possi.spigot.SpigotString;
 import rip.hippo.possi.spigot.source.YAMLPropertySource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,6 +21,9 @@ public final class PossiExamplePlugin extends JavaPlugin {
 
   private final Property<SpigotString> greetingProperty = Property.of(SpigotString.of("&cHello world!").color())
       .withBind(propertySource.bindSpigotString("messages.greeting"));
+
+  private final Property<List<Integer>> numberProperty = Property.of(Arrays.asList(1, 2, 3, 4, 5))
+      .withBind(propertySource.bindIntegerList("number-list"));
 
   @Override
   public void onEnable() {
@@ -36,6 +41,10 @@ public final class PossiExamplePlugin extends JavaPlugin {
           .color()
           .replace("%name%", sender.getName())
           .send(sender);
+
+      for (Integer integer : numberProperty.get()) {
+        sender.sendMessage(integer.toString());
+      }
       return true;
     }
 

@@ -8,10 +8,14 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
+import rip.hippo.possi.reflector.Reflector;
 import rip.hippo.possi.source.AbstractPropertySource;
 import rip.hippo.possi.source.PropertyBind;
 import rip.hippo.possi.spigot.SpigotString;
 import rip.hippo.possi.spigot.SpigotStringList;
+import rip.hippo.possi.spigot.source.impl.PrimitiveYAMLPropertyBind;
+import rip.hippo.possi.spigot.source.impl.SpigotStringListYAMLPropertyBind;
+import rip.hippo.possi.spigot.source.impl.SpigotStringYAMLPropertyBind;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,210 +73,95 @@ public final class YAMLPropertySource extends AbstractPropertySource {
   }
 
   public YAMLPropertyBind<SpigotString> bindSpigotString(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isString(path)) {
-        return SpigotString.of(section.getString(path));
-      }
-      return null;
-    }, (section, value) -> section.set(path, value.getValue()));
+    return new SpigotStringYAMLPropertyBind(this, path);
   }
 
   public YAMLPropertyBind<String> bindString(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isString(path)) {
-        return section.getString(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, String.class);
   }
 
   public YAMLPropertyBind<Integer> bindInteger(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isInt(path)) {
-        return section.getInt(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Integer.class);
   }
 
   public YAMLPropertyBind<Boolean> bindBoolean(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isBoolean(path)) {
-        return section.getBoolean(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Boolean.class);
   }
 
   public YAMLPropertyBind<Double> bindDouble(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isDouble(path)) {
-        return section.getDouble(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Double.class);
   }
 
   public YAMLPropertyBind<Long> bindLong(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isLong(path)) {
-        return section.getLong(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Long.class);
   }
 
   public YAMLPropertyBind<List<?>> getList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getWildCardList());
   }
 
   public YAMLPropertyBind<SpigotStringList> getSpigotStringList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return new SpigotStringList(section.getStringList(path));
-      }
-      return null;
-    }, (section, value) -> section.set(path, value.toStringList()));
+    return new SpigotStringListYAMLPropertyBind(this, path);
   }
 
   public YAMLPropertyBind<List<String>> bindStringList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getStringList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(String.class));
   }
 
   public YAMLPropertyBind<List<Integer>> bindIntegerList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getIntegerList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Integer.class));
   }
 
   public YAMLPropertyBind<List<Boolean>> bindBooleanList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getBooleanList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Boolean.class));
   }
 
   public YAMLPropertyBind<List<Double>> bindDoubleList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getDoubleList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Double.class));
   }
 
   public YAMLPropertyBind<List<Float>> bindFloatList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getFloatList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Float.class));
   }
 
   public YAMLPropertyBind<List<Long>> bindLongList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getLongList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Long.class));
   }
 
   public YAMLPropertyBind<List<Byte>> bindByteList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getByteList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Byte.class));
   }
 
   public YAMLPropertyBind<List<Character>> bindCharacterList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getCharacterList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Character.class));
   }
 
   public YAMLPropertyBind<List<Short>> bindShortList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getShortList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Short.class));
   }
 
   public YAMLPropertyBind<List<Map<?, ?>>> bindMapList(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isList(path)) {
-        return section.getMapList(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Reflector.getWildCardMap()));
   }
 
   public YAMLPropertyBind<Vector> bindVector(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isVector(path)) {
-        return section.getVector(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Vector.class);
   }
 
   public YAMLPropertyBind<OfflinePlayer> bindOfflinePlayer(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isOfflinePlayer(path)) {
-        return section.getOfflinePlayer(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, OfflinePlayer.class);
   }
 
   public YAMLPropertyBind<ItemStack> bindItemStack(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isItemStack(path)) {
-        return section.getItemStack(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, ItemStack.class);
   }
 
   public YAMLPropertyBind<Color> bindColor(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isColor(path)) {
-        return section.getColor(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Color.class);
   }
 
   public YAMLPropertyBind<Location> bindLocation(String path) {
-    return new YAMLPropertyBind<>(this, section -> {
-      if (section.isConfigurationSection(path)) {
-        return section.getLocation(path);
-      }
-      return null;
-    }, (section, value) -> section.set(path, value));
+    return new PrimitiveYAMLPropertyBind<>(this, path, Location.class);
   }
 
   public YamlConfiguration getYamlConfiguration() {

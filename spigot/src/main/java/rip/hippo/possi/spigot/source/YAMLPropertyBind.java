@@ -3,29 +3,24 @@ package rip.hippo.possi.spigot.source;
 import org.bukkit.configuration.ConfigurationSection;
 import rip.hippo.possi.source.AbstractPropertyBind;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 /**
  * @author Hippo
  */
-public final class YAMLPropertyBind<T> extends AbstractPropertyBind<YAMLPropertySource, T> {
+public abstract class YAMLPropertyBind<T> extends AbstractPropertyBind<YAMLPropertySource, T> {
 
-  private final Function<ConfigurationSection, T> readFunction;
-  private final BiConsumer<ConfigurationSection, T> writeFunction;
+  private final String path;
 
-  public YAMLPropertyBind(YAMLPropertySource source,
-                          Function<ConfigurationSection, T> readFunction,
-                          BiConsumer<ConfigurationSection, T> writeFunction) {
+  public YAMLPropertyBind(YAMLPropertySource source, String path) {
     super(source);
-    this.readFunction = readFunction;
-    this.writeFunction = writeFunction;
+    this.path = path;
   }
 
+  public abstract T read(ConfigurationSection section);
+  public abstract void write(ConfigurationSection section, T value);
 
   @Override
   public void onLoad() {
-    T value = readFunction.apply(getSource().getYamlConfiguration());
+    T value = read(getSource().getYamlConfiguration());
     if (value != null) {
       getProperty().set(value);
     }
@@ -33,6 +28,10 @@ public final class YAMLPropertyBind<T> extends AbstractPropertyBind<YAMLProperty
 
   @Override
   public void onSave() {
-    writeFunction.accept(getSource().getYamlConfiguration(), getProperty().get());
+    write(getSource().getYamlConfiguration(), getProperty().get());
+  }
+
+  public String getPath() {
+    return path;
   }
 }
