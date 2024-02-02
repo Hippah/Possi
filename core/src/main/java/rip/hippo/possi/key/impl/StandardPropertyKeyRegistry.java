@@ -16,12 +16,12 @@ public final class StandardPropertyKeyRegistry implements PropertyKeyRegistry {
 
   @Override
   public void register(PropertyKey<?> propertyKey, Property<?> property) {
-    propertyKeyMap.computeIfAbsent(propertyKey, ignored -> new LinkedList<>()).add(property);
+    propertyKeyMap.computeIfAbsent(propertyKey, ignored -> new ArrayList<>()).add(property);
   }
 
   @Override
   public List<Property<?>> getProperties(PropertyKey<?>... keys) {
-    List<Property<?>> properties = new LinkedList<>();
+    List<Property<?>> properties = new ArrayList<>();
 
     for (PropertyKey<?> key : keys) {
       List<Property<?>> propertyList = propertyKeyMap.get(key);

@@ -3,7 +3,7 @@ package rip.hippo.possi.source;
 import rip.hippo.possi.attribute.impl.VisibilityAttribute;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +11,7 @@ import java.util.List;
  */
 public abstract class AbstractPropertySource implements PropertySource {
 
-  private List<PropertyBind<?, ?>> binds = new LinkedList<>();
+  private List<PropertyBind<?, ?>> binds = new ArrayList<>();
 
   @Override
   public void addBind(PropertyBind<?, ?> bind) {

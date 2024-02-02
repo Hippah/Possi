@@ -32,6 +32,9 @@ public interface Property<T> {
 
   List<ValueChangeCallback<T>> getCallbacks();
 
+  static <U> Property<U> of() {
+    return new StandardProperty<>(null);
+  }
   static <U> Property<U> of(U value) {
     return new StandardProperty<>(value);
   }

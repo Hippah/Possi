@@ -22,7 +22,7 @@ public final class StandardProperty<T> implements Property<T> {
 
   public StandardProperty(T value) {
     this.value = value;
-    this.callbacks = new LinkedList<>();
+    this.callbacks = new ArrayList<>();
     this.keyMap = new HashMap<>();
     this.attributeMap = new HashMap<>();
   }
