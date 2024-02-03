@@ -8,7 +8,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
-import rip.hippo.possi.reflector.Reflector;
 import rip.hippo.possi.source.AbstractPropertySource;
 import rip.hippo.possi.source.PropertyBind;
 import rip.hippo.possi.spigot.SpigotString;
@@ -18,8 +17,6 @@ import rip.hippo.possi.spigot.source.impl.SpigotStringListYAMLPropertyBind;
 import rip.hippo.possi.spigot.source.impl.SpigotStringYAMLPropertyBind;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -77,27 +74,27 @@ public final class YAMLPropertySource extends AbstractPropertySource {
   }
 
   public YAMLPropertyBind<String> bindString(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, String.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Integer> bindInteger(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Integer.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Boolean> bindBoolean(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Boolean.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Double> bindDouble(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Double.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Long> bindLong(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Long.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<?>> getList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getWildCardList());
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<SpigotStringList> getSpigotStringList(String path) {
@@ -105,63 +102,63 @@ public final class YAMLPropertySource extends AbstractPropertySource {
   }
 
   public YAMLPropertyBind<List<String>> bindStringList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(String.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Integer>> bindIntegerList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Integer.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Boolean>> bindBooleanList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Boolean.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Double>> bindDoubleList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Double.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Float>> bindFloatList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Float.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Long>> bindLongList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Long.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Byte>> bindByteList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Byte.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Character>> bindCharacterList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Character.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Short>> bindShortList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Short.class));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<List<Map<?, ?>>> bindMapList(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Reflector.getListClass(Reflector.getWildCardMap()));
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Vector> bindVector(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Vector.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<OfflinePlayer> bindOfflinePlayer(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, OfflinePlayer.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<ItemStack> bindItemStack(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, ItemStack.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Color> bindColor(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Color.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YAMLPropertyBind<Location> bindLocation(String path) {
-    return new PrimitiveYAMLPropertyBind<>(this, path, Location.class);
+    return new PrimitiveYAMLPropertyBind<>(this, path);
   }
 
   public YamlConfiguration getYamlConfiguration() {

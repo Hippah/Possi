@@ -9,20 +9,15 @@ import rip.hippo.possi.spigot.source.YAMLPropertySource;
  */
 public final class PrimitiveYAMLPropertyBind<T> extends YAMLPropertyBind<T> {
 
-  private final Class<T> type;
 
-  public PrimitiveYAMLPropertyBind(YAMLPropertySource source, String path, Class<T> type) {
+  public PrimitiveYAMLPropertyBind(YAMLPropertySource source, String path) {
     super(source, path);
-    this.type = type;
   }
 
-  @Override
+  @Override @SuppressWarnings("unchecked")
   public T read(ConfigurationSection section) {
     Object object = section.get(getPath());
-    if (object != null && type.isAssignableFrom(object.getClass())) {
-      return type.cast(object);
-    }
-    return null;
+    return (T) object;
   }
 
   @Override
